@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 2, Time elapsed: 1.685 sec <<< FAILURE! - in TestSuite
+setUp(news.Search)  Time elapsed: 0.951 sec  <<< FAILURE!
+org.testng.TestNGException: 
+
+Method setUp requires 7 parameters but 0 were supplied in the @Configuration annotation.
+

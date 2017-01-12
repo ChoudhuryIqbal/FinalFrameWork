@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Cnn App running on Chrome  Browser]">
+  <parameter name="os" value="Windows 10"/>
+  <parameter name="accessKey" value="your key"/>
+  <parameter name="browserVersion" value="40"/>
+  <parameter name="browserName" value="chrome"/>
+  <parameter name="usercloud" value="false"/>
+  <parameter name="userName" value="your name"/>
+  <parameter name="url" value="http://www.cnn.com"/>
+  <test name="Home Page">
+    <classes>
+      <class name="news.Search"/>
+    </classes>
+  </test> <!-- Home Page -->
+  <test name="Home Page(failed)">
+    <classes>
+      <class name="news.Search">
+        <methods>
+          <include name="searchNews"/>
+        </methods>
+      </class> <!-- news.Search -->
+    </classes>
+  </test> <!-- Home Page(failed) -->
+</suite> <!-- Failed suite [Cnn App running on Chrome  Browser] -->
