@@ -15,7 +15,7 @@ public class Search extends CommonAPI {
 
     @Test
     public void searchNews() throws  InterruptedException,IOException{
-        clickByCss("#search-button");
+       /* clickByCss("#search-button");
         Thread.sleep(1000);
        // typeByCss("#search-input-field","Politics");
         //
@@ -24,6 +24,28 @@ public class Search extends CommonAPI {
         typeByCss("#search-input-field",k[1]);
 
         takeEnterKeys("#search-input-field");
-        Thread.sleep(3000);
+        Thread.sleep(3000);*/
+
+        String [] data=readNewsData.getData();
+        clickByCss("#search-button");
+        Thread.sleep(1000);
+        int counter=0;
+        for(String st:data){
+            if(counter==0){
+                typeByCss("#search-input-field",st);
+
+                takeEnterKeys("#search-input-field");
+                clearInputField("#searchInputTop");
+                Thread.sleep(1000);
+                counter++;
+
+            }
+            else {
+                typeByCss("#searchInputTop",st);
+                takeEnterKeys("#seachInputTop");
+                Thread.sleep(1000);
+                clearInputField("#searchInputTop");
+            }
+        }
     }
 }

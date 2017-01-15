@@ -121,4 +121,14 @@ public class CommonAPI {
         select.selectByVisibleText(value);
     }
 
+    public void clearInputField(String locator){
+        driver.findElement(By.id(locator)).clear();
+    }
+    public void sleepFor(int sec) throws InterruptedException{
+        Thread.sleep(sec*1000);
+    }
+
+
+
+
 }
