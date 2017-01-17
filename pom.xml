@@ -31,19 +31,29 @@
             <version>6.9.10</version>
         </dependency>
 
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.14</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.2</version>
+        </dependency>
     </dependencies>
 </dependencyManagement>
 
+
     <profiles>
+
         <profile>
             <id>default</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <modules>
                 <module>Generic</module>
@@ -55,6 +65,9 @@
 
         <profile>
             <id>cnn-app</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <modules>
                 <module>Generic</module>
                 <module>Cnn</module>
@@ -63,11 +76,19 @@
 
         <profile>
             <id>amazon-app</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+
             <modules>
                 <module>Generic</module>
                 <module>Amazon</module>
             </modules>
+
+
         </profile>
+
     </profiles>
+
 
 </project>

@@ -4,33 +4,23 @@ import base.CommonAPI;
 import org.testng.annotations.Test;
 import reader.ReadNewsData;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import java.io.IOException;
+import java.util.List;
 
 /**
- * Created by a on 1/10/2017.
+ * Created by a on 1/16/2017.
  */
-public class Search extends CommonAPI {
+public class SearchNewsFromDB extends CommonAPI {
     ReadNewsData readNewsData=new ReadNewsData();
 
-
     @Test
-    public void searchNews() throws  InterruptedException,IOException{
-       /* clickByCss("#search-button");
-        Thread.sleep(1000);
-       // typeByCss("#search-input-field","Politics");
-        //
-        // typeByCss("#search-input-field",readNewsData.getData());
-        String [] k=readNewsData.getData();
-        typeByCss("#search-input-field",k[1]);
-
-        takeEnterKeys("#search-input-field");
-        Thread.sleep(3000);*/
-
-        String [] data=readNewsData.getData();
+    public void searchNews() throws InterruptedException,IOException,Exception{
+        List <String> data=readNewsData.getDataFromDB();
         clickByCss("#search-button");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         int counter=0;
-        for(String st:data){
+        for (String st:data){
             if(counter==0){
                 typeByCss("#search-input-field",st);
 
