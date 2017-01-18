@@ -1,5 +1,9 @@
 package util;
 
+//import base.CommonAPI;
+
+import base.CommonAPI;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +21,7 @@ public class DBConnect {
     private Statement statement=null;
     private PreparedStatement preparedStatement=null;
     private ResultSet resultSet=null;
-    List <String> list=new ArrayList<String>();
+  //  List <String> list=new ArrayList<String>();
 
 
 
@@ -33,7 +37,7 @@ public class DBConnect {
     public void connectToDatBase() throws Exception{
         Properties prop=loadPropertiesFile();
         String driverClass=prop.getProperty("MYSQLJDBC.driver");
-        String url=prop.getProperty("MYSQLJDBC.url");
+       String url=prop.getProperty("MYSQLJDBC.url");
         String password=prop.getProperty("MYSQLJDBC.password");
         String userName=prop.getProperty("MYSQLJDBC.userName");
         //this will load the mysql driver
@@ -41,20 +45,26 @@ public class DBConnect {
 
         //set Up the connection with the db
         connect= DriverManager.getConnection(url,userName,password);
-        System.out.println("Database connected");
+        CommonAPI.logger.info("database connected");
+
+      //  System.out.println("Database connected");
 
     }
 
 
 
-    public List<String> readDataBase() throws IOException,SQLException{
+    public List<String> readDataBase(String tableName,String columnName) throws IOException,SQLException{
+
+       List<String> data=new ArrayList<String>();
+
         try{
             connectToDatBase();
             //statement allow to issue SQL qureies to the database
             statement=connect.createStatement();
             //result set get the result of the sql query
-            resultSet=statement.executeQuery("select * from CNNNewsVertical");
-            getResultSetData(resultSet);
+
+            resultSet=statement.executeQuery("select * from"+tableName);
+           data=getResultSetData(resultSet,columnName);
 
         }
         catch (Exception e){
@@ -64,19 +74,21 @@ public class DBConnect {
         finally {
            close();
         }
-        return list;
+        return data;
     }
     public void queryDatabase(){
 
     }
 
-    public List<String >getResultSetData(ResultSet resultSet)throws SQLException{
+    public List<String >getResultSetData(ResultSet resultSet,String columnName)throws SQLException{
+        List<String> dataList=new ArrayList<String>();
+
         while(resultSet.next()){
-            String itemName=resultSet.getString(0);
-            list.add(itemName);
+            String itemName=resultSet.getString("columnName");
+            dataList.add(itemName);
 
         }
-        return list;
+        return dataList;
     }
 
     private void writeResultSetToConsole(ResultSet resultSet)throws SQLException{

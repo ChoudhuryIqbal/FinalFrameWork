@@ -16,7 +16,10 @@ public class SearchNewsFromDB extends CommonAPI {
 
     @Test
     public void searchNews() throws InterruptedException,IOException,Exception{
-        List <String> data=readNewsData.getDataFromDB();
+        //List <String> data=readNewsData.getDataFromDB();
+        logger.info("Running News SearchNewsFormExcelFile on Cnn");
+        List<String> data=readNewsData.getNewsDataFromDB("cnnnewsvertical","NewsTitle");
+
         clickByCss("#search-button");
         Thread.sleep(2000);
         int counter=0;

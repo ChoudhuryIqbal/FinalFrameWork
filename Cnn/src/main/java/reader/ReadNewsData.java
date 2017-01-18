@@ -14,15 +14,38 @@ public class ReadNewsData {
 
     DataReader dataReader=new DataReader();
     DBConnect dbConnect=new DBConnect();
-    public String[] getData() throws IOException{
+
+
+    public String[] getNewsFromExcelFile() throws IOException{
+    //public String[] getData() throws IOException{
         String path=System.getProperty("user.dir")+"/data/searchData.xls";
         String[] news=dataReader.fileReader(path);
         return  news;
 
     }
-    public List<String> getDataFromDB() throws IOException,Exception{
+
+
+   /* public List<String> getDataFromDB() throws IOException,Exception{
 
         List<String > newsList=dbConnect.readDataBase();
         return  newsList;
+    }
+    */
+
+    public String [] getActionItemsFromExcelFile() throws IOException{
+        String path=System.getProperty("user.dir")+"\\data\\file1.xls";
+        String[] news =dataReader.fileReader(path);
+        return news;
+    }
+
+    public List<String> getNewsDataFromDB(String tableName,String columnName) throws Exception{
+        List<String> newsList=dbConnect.readDataBase(tableName,columnName);
+        return newsList;
+    }
+
+
+    public List<String> getActionStepsDataFromDB(String tableName,String columnName)throws Exception{
+        List<String> actionList=dbConnect.readDataBase(tableName,columnName);
+        return actionList;
     }
 }

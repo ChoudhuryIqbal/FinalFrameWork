@@ -1,6 +1,9 @@
 package base;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,6 +18,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+//import org.apache.log4j.Level;
+//import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,12 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 /**
  * Created by rrt on 4/23/2016.
  */
 public class CommonAPI {
 
+
+
     public WebDriver driver = null;
+    public static Logger logger=Logger.getLogger(CommonAPI.class);
+
+
     @Parameters({"usecloud","userName","accessKey","os","browserName","browserVersion","url"})
     @BeforeMethod
     public void setUp(@Optional("false") boolean usecloud,@Optional("rahmanww") String userName,@Optional("")
@@ -37,9 +48,13 @@ public class CommonAPI {
         if(usecloud==true){
             //run in cloud
             getCloudDriver(userName,accessKey,os,browserName,browserVersion);
+
+            logger.setLevel(Level.INFO);
+            logger.info("Test is running on saucelabs");
         }else{
             //run in local
             getLocalDriver(browserName);
+            logger.info("Test is running on Local");
         }
 
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

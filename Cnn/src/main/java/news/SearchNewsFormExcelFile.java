@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by a on 1/10/2017.
  */
-public class Search extends CommonAPI {
+public class SearchNewsFormExcelFile extends CommonAPI {
     ReadNewsData readNewsData=new ReadNewsData();
 
 
@@ -26,7 +26,7 @@ public class Search extends CommonAPI {
         takeEnterKeys("#search-input-field");
         Thread.sleep(3000);*/
 
-        String [] data=readNewsData.getData();
+        String [] data=readNewsData.getNewsFromExcelFile();
         clickByCss("#search-button");
         Thread.sleep(1000);
         int counter=0;
