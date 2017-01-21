@@ -2,7 +2,9 @@ package base;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,14 +39,17 @@ public class CommonAPI {
 
 
     public WebDriver driver = null;
-    public static Logger logger=Logger.getLogger(CommonAPI.class);
+    //public static Logger logger=Logger.getLogger(CommonAPI.class);
 
-
+    public static Logger logger= LogManager.getLogger(CommonAPI.class);
     @Parameters({"usecloud","userName","accessKey","os","browserName","browserVersion","url"})
     @BeforeMethod
     public void setUp(@Optional("false") boolean usecloud,@Optional("rahmanww") String userName,@Optional("")
             String accessKey, @Optional("Windows 8") String os,@Optional("firefox") String browserName,@Optional("34")
                               String browserVersion,@Optional("http://www.cnn.com") String url)throws IOException {
+
+
+        BasicConfigurator.configure();
         if(usecloud==true){
             //run in cloud
             getCloudDriver(userName,accessKey,os,browserName,browserVersion);
@@ -253,6 +258,9 @@ public class CommonAPI {
         WebDriverWait wait=new WebDriverWait(driver,10);
         boolean element=wait.until(ExpectedConditions.elementToBeSelected(locator));
     }
+
+
+
 
 
     }
