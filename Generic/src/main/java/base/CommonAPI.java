@@ -62,6 +62,14 @@ public class CommonAPI {
         driver.manage().window().maximize();
     }
 
+    public void upLoadFile(String locator,String path){
+        driver.findElement(By.cssSelector(locator)).sendKeys(path);
+    }
+
+
+
+
+
     public WebDriver getLocalDriver(String browserName){
         if(browserName.equalsIgnoreCase("chrome")){
             System.setProperty("webdriver.chrome.driver","Generic/browser-driver/chromedriver.exe");
