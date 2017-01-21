@@ -12,8 +12,8 @@
     <parameter name="browserversion" value="34"/>
 
     <test name="Home Page">
-        <classes>
-            <class name="news.Search"/>
+        <classes >
+            <class name="news.ActionItems"/>
         </classes>
     </test>
 </suite>
